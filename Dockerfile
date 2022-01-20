@@ -1,5 +1,5 @@
  # image de départ
- FROM alpine:3.15
+ FROM alpine:3.15 as builder
 
  # chemin de travail
  WORKDIR /V-rification_MiniProjet-CloudComputing-
@@ -21,6 +21,13 @@
 
  # build avec npm
  RUN npm run build 
+
+# stage exécution
+ FROM alpine:3.15 as runner
+
+COPY --from=builder . .
+
+COPY . .
 
  # exécution
  CMD ["npm","run","watch"]
