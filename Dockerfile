@@ -6,7 +6,8 @@
 WORKDIR /src
 
  # installation des paquets système
- RUN apk add --update nodejs npm && apk add --update npm
+ RUN apk add --update nodejs npm 
+ #&& apk add --update npm
 
  # ajout utilisateur node et groupe node
  #RUN ...
