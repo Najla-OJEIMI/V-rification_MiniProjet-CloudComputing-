@@ -1,8 +1,9 @@
  # image de départ
- FROM alpine:3.15 as builder
-
+ FROM alpine:3.15
+ #FROM alpine:3.15 as builder
  # chemin de travail
- WORKDIR /V-rification_MiniProjet-CloudComputing-
+ #WORKDIR /V-rification_MiniProjet-CloudComputing-
+WORKDIR /src
 
  # installation des paquets système
  RUN apk add --update nodejs npm && apk add --update npm
@@ -17,17 +18,20 @@
  COPY . .
 
  # installation des dépendances avec npm
- RUN npm install
+# RUN npm install
 
  # build avec npm
  RUN npm run build 
 
+EXPOSE 8080
+
+
 # stage exécution
- FROM alpine:3.15 as runner
+ #FROM alpine:3.15 as runner
 
-COPY --from=builder . .
+#COPY --from=builder . .
 
-COPY . .
+#COPY . .
 
  # exécution
  CMD ["npm","run","watch"]
